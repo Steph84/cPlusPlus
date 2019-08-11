@@ -1,14 +1,17 @@
-#include <iostream>
+#include <stdio.h>
 #include <SDL2/SDL.h>
 
-using std::cout;
+Uint8 red = 0;
+Uint8 green = 0;
+Uint8 blue = 0;
+int blink = 1;
 
 int main(int argc, char *argv[])
 {
-	cout << "Start\n";
+	printf("Start\n");
 	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
 	{
-		cout << "Failed to initialise SDL\n";
+		printf("Failed to initialise SDL\n");
 		return -1;
 	}
 
@@ -31,6 +34,8 @@ int main(int argc, char *argv[])
 		return -1;	
 	}
 
+
+	bool lightning = true;
 	while (true)
 	{
 		SDL_Event event;
@@ -42,6 +47,14 @@ int main(int argc, char *argv[])
 			}
 		}
 
+		// faire osciller du noir au blanc
+		red += blink;
+		green += blink;
+		blue += blink;
+		if(red == 255){blink = -blink;}
+		if(red == 0){blink = -blink;}
+		
+		SDL_SetRenderDrawColor(renderer, red, green, blue, 255);
 		SDL_RenderClear(renderer);
 		SDL_RenderPresent(renderer);
 	}
