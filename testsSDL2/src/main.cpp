@@ -16,11 +16,11 @@ int main(int argc, char *argv[])
 	}
 
 	// initialize SDL_image
-	if(IMG_Init(IMG_INIT_PNG))
-	{
-		SDL_Log("Could not initialize SDL_image: %s", SDL_GetError());
-		return -1;
-	}
+	// if(IMG_Init(IMG_INIT_PNG))
+	// {
+	// 	SDL_Log("Could not initialize SDL_image: %s", SDL_GetError());
+	// 	return -1;
+	// }
 
 	// initialize other objects
 	SDL_Window* window = nullptr;
