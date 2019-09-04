@@ -2,7 +2,9 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include "initialize.h"
 
+// Initialize/LoadContent/UnloadContent/Update/Draw
 using namespace std;
 
 const int WINDOW_WIDTH = 1200;
@@ -10,13 +12,7 @@ const int WINDOW_HEIGHT = 200;
 
 int main(int argc, char *argv[])
 {
-	// initialize SDL
-	if(SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
-		printf("Failed to initialize SDL\n");
-		SDL_Log("Could not initialize SDL: %s", SDL_GetError());
-		return -1;
-	}
+	Initialize initialize();
 
 	// initialize other objects
 	SDL_Window* window = nullptr;
