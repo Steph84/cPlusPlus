@@ -1,3 +1,6 @@
+#ifndef INITIALIZE
+#define INITIALIZE
+
 #include <stdio.h>
 #include <iostream>
 #include <SDL2/SDL.h>
@@ -10,9 +13,7 @@ class Initialize
 	public:
 	
 	Initialize();
-
-
-	private:
-
+	void InitializeWindow(SDL_Window* window, int WINDOW_WIDTH, int WINDOW_HEIGHT);
 
 };
+#endif

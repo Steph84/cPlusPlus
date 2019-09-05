@@ -12,7 +12,7 @@ const int WINDOW_HEIGHT = 200;
 
 int main(int argc, char *argv[])
 {
-	Initialize initialize();
+	Initialize initializer(); // ne fonctionne QUE comme ça !!!
 
 	// initialize other objects
 	SDL_Window* window = nullptr;
@@ -22,15 +22,16 @@ int main(int argc, char *argv[])
 	SDL_Surface* hero = nullptr; // use RAM
 	SDL_Texture* textureHero = nullptr;
 
+	initializer.InitializeWindow(&window, WINDOW_WIDTH, WINDOW_HEIGHT);
 
 	// create window
-	window = SDL_CreateWindow("SDL2 tests", SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,
-								WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
-	if (window == nullptr)	
-	{
-		SDL_Log("Could not create a window: %s", SDL_GetError());
-		return -1;
-	}
+	// window = SDL_CreateWindow("SDL2 tests", SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,
+	// 							WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+	// if (window == nullptr)	
+	// {
+	// 	SDL_Log("Could not create a window: %s", SDL_GetError());
+	// 	return -1;
+	// }
 
 	// create renderer
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
