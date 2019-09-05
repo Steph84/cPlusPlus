@@ -14,7 +14,7 @@ Initialize::Initialize()
 	{
 		printf("Failed to initialize SDL\n");
 		SDL_Log("Could not initialize SDL: %s", SDL_GetError());
-		return -1;
+		// return -1;
 	}
 }
 
@@ -26,6 +26,6 @@ void Initialize::InitializeWindow(SDL_Window* window, int WINDOW_WIDTH, int WIND
 	if (window == nullptr)	
 	{
 		SDL_Log("Could not create a window: %s", SDL_GetError());
-		return -1;
+		// return -1;
 	}
 }
