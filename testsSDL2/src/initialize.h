@@ -13,7 +13,8 @@ class Initialize
 	public:
 	
 	Initialize();
-	void InitializeWindow(SDL_Window* window, int WINDOW_WIDTH, int WINDOW_HEIGHT);
+	
+	// int InitializeWindow(SDL_Window* window, int WINDOW_WIDTH, int WINDOW_HEIGHT);
 
 };
 #endif

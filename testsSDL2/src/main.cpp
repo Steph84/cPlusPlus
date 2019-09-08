@@ -12,27 +12,33 @@ const int WINDOW_HEIGHT = 200;
 
 int main(int argc, char *argv[])
 {
-	Initialize* initializer = new Initialize(); // ne fonctionne QUE comme ça !!!
-	// Initialize initializer(); // ne fonctionne QUE comme ça !!!
+	// initialize SDL
+	if(SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+		printf("Failed to initialize SDL\n");
+		SDL_Log("Could not initialize SDL: %s", SDL_GetError());
+		return -1;
+	}
+
+	// create window
+	SDL_Window* window = SDL_CreateWindow("SDL2 tests", SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,
+								WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+	if (window == nullptr)	
+	{
+		SDL_Log("Could not create a window: %s", SDL_GetError());
+		return -1;
+	}
+
+
+
+	// Initialize* initializer = new Initialize(); 
 
 	// initialize other objects
-	SDL_Window* window = nullptr;
 	SDL_Surface* surface = nullptr; // use RAM
 	SDL_Renderer* renderer = nullptr; // use VRAM
 	SDL_Texture* texture = nullptr;
 	SDL_Surface* hero = nullptr; // use RAM
 	SDL_Texture* textureHero = nullptr;
-
-	initializer->InitializeWindow(window, WINDOW_WIDTH, WINDOW_HEIGHT);
-
-	// create window
-	// window = SDL_CreateWindow("SDL2 tests", SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,
-	// 							WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
-	// if (window == nullptr)	
-	// {
-	// 	SDL_Log("Could not create a window: %s", SDL_GetError());
-	// 	return -1;
-	// }
 
 	// create renderer
 	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
