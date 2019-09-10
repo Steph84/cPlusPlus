@@ -1,5 +1,5 @@
-#ifndef INITIALIZE
-#define INITIALIZE
+#ifndef GAMERUN
+#define GAMERUN
 
 #include <stdio.h>
 #include <iostream>
@@ -8,11 +8,15 @@
 
 using namespace std;
 
-class Initialize
+class GameRun
 {
 	public:
 	
-	Initialize();
+	GameRun();
+	SDL_Surface* LoadSurface(string fileName);
+
+	SDL_Surface* background;
+	SDL_Surface* hero;
 	
 	// int InitializeWindow(SDL_Window* window, int WINDOW_WIDTH, int WINDOW_HEIGHT);
 
