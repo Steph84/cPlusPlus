@@ -14,7 +14,7 @@ class GameRun
 	
 	GameRun();
 	SDL_Surface* LoadSurface(string fileName);
-
+	
 	SDL_Surface* background;
 	SDL_Surface* hero;
 	
