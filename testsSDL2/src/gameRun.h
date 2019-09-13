@@ -13,7 +13,7 @@ class GameRun
 	public:
 	
 	GameRun();
-	SDL_Surface* LoadSurface(string fileName);
+	SDL_Surface* LoadSurface(const char* &fileName);
 	
 	SDL_Surface* background;
 	SDL_Surface* hero;

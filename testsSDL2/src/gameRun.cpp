@@ -10,29 +10,16 @@ using namespace std;
 GameRun::GameRun()
 {
 	// creer le pathFileName ici, le passer en référence puis libérer la mémoire
-
-	// initialize other objects
-	background = LoadSurface("background.png"); // use RAM
-	hero = LoadSurface("heros.png"); // use RAM
+	const char* pathFileName = "./data/background.png";
+	background = LoadSurface(pathFileName); // use RAM
+	
+	pathFileName = "./data/heros.png";
+	hero = LoadSurface(pathFileName); // use RAM
+	delete pathFileName;
 }
 
-SDL_Surface* GameRun::LoadSurface(string fileName)
-{
-	string pathFileName = "./data/" + fileName;
-	return IMG_Load(pathFileName.c_str());
+// pass file name by reference for memory
+SDL_Surface* GameRun::LoadSurface(const char* &pathFileName)
+{   
+	return IMG_Load(pathFileName);
 }
-
-// SDL_Surface* GameRun::LoadSurface(string fileName)
-// {
-// 	string pathFileName = "./data/" + fileName;
-// 	SDL_Surface* surface = IMG_Load(pathFileName.c_str());
-// 	if(surface == nullptr)
-// 	{
-// 		SDL_Log("Could not create a surface: %s", SDL_GetError());
-// 		return nullptr;	
-// 	}
-// 	else
-// 	{
-// 		return surface;
-// 	}
-// }

@@ -4,9 +4,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include "gameRun.h"
-#include <list>
 #include <tuple>
-#include <chrono>
 #include <vector>
 
 // Initialize/LoadContent/UnloadContent/Update/Draw
@@ -17,75 +15,31 @@ const int WINDOW_HEIGHT = 200;
 
 int main(int argc, char *argv[])
 {
-	auto start = chrono::high_resolution_clock::now();
-	list<tuple<int, int>> listSurface;
-	for (int i = 0; i < 1000000; ++i)
-	{
-		listSurface.push_back(tuple<int, int>(i, i*i));
-	}
-	auto end = chrono::high_resolution_clock::now();
-	double elapsed = chrono::duration<double, milli>(end-start).count();
-  	printf ("creation list = %.f\n", elapsed);
+	// start = chrono::high_resolution_clock::now();
+	// vector<int> vectorSurface;
+	// for (int i = 0; i < 1000000; ++i)
+	// {
+	// 	vectorSurface.push_back(i*i);
+	// }
+	// end = chrono::high_resolution_clock::now();
+	// elapsed = chrono::duration<double, milli>(end-start).count();
+ //  	printf ("creation vector = %.f\n", elapsed);
 
-	start = chrono::high_resolution_clock::now();
-	vector< tuple<int, int> > vectorSurface;
-	for (int i = 0; i < 1000000; ++i)
-	{
-		vectorSurface.push_back(tuple<int, int>(i, i*i));
-	}
-	end = chrono::high_resolution_clock::now();
-	elapsed = chrono::duration<double, milli>(end-start).count();
-  	printf ("creation vector = %.f\n", elapsed);
+	// start = chrono::high_resolution_clock::now();
+	// for (int i = 0; i < vectorSurface.size(); ++i)
+	// {
+	// 	int b = vectorSurface.at(i);
+	// }
+	// end = chrono::high_resolution_clock::now();
+	// elapsed = chrono::duration<double, milli>(end-start).count();
+ //  	printf ("read vector = %.f\n", elapsed);
 
-
-
-
-	start = chrono::high_resolution_clock::now();
-	list<tuple<int, int>>::iterator it = listSurface.begin();
-	for (it = listSurface.begin(); it != listSurface.end(); it++)
-	{
-		tuple<int, int> a = *it;
-	}
-	end = chrono::high_resolution_clock::now();
-	elapsed = chrono::duration<double, milli>(end-start).count();
-  	printf ("read list = %.f\n", elapsed);
-
-	start = chrono::high_resolution_clock::now();
-	for (int i = 0; i < vectorSurface.size(); ++i)
-	{
-		tuple<int, int> b = vectorSurface.at(i);
-	}
-	end = chrono::high_resolution_clock::now();
-	elapsed = chrono::duration<double, milli>(end-start).count();
-  	printf ("read vector = %.f\n", elapsed);
-
-
-
-	start = chrono::high_resolution_clock::now();
-	list<tuple<int, int>>::iterator tra = listSurface.begin();
-	int n = 0;
-	for (tra = listSurface.begin(); tra != listSurface.end(); tra++)
-	{
-		n++;
-		if (n == 500001)
-		{
-			tuple<int, int> c = *tra;
-			printf("%d\n", get<0>(c));
-			printf("%d\n", get<1>(c));
-			break;
-		}
-	}
-	end = chrono::high_resolution_clock::now();
-	elapsed = chrono::duration<double, milli>(end-start).count();
-  	printf ("read list = %.f\n", elapsed);
-
-	start = chrono::high_resolution_clock::now();
-	tuple<int, int> d = vectorSurface.at(500000);
-	printf("%d\n", get<0>(d));
-	printf("%d\n", get<1>(d));
-	end = chrono::high_resolution_clock::now();
-	elapsed = chrono::duration<double, milli>(end-start).count();
-  	printf ("read vector = %.f\n", elapsed);
+	// start = chrono::high_resolution_clock::now();
+	// int d = vectorSurface.at(500000);
+	// printf("%d\n", d);
+	// end = chrono::high_resolution_clock::now();
+	// elapsed = chrono::duration<double, milli>(end-start).count();
+ //  	printf ("read vector = %.f\n", elapsed);
 
 
 	// initialize SDL
@@ -119,12 +73,12 @@ int main(int argc, char *argv[])
 
 
 	// create surface
-	SDL_Surface* surface = IMG_Load("./data/background.png");
-	if(surface == nullptr)
-	{
-		SDL_Log("Could not create a surface: %s", SDL_GetError());
-		return -1;	
-	}
+	// SDL_Surface* surface = IMG_Load("./data/background.png");
+	// if(surface == nullptr)
+	// {
+	// 	SDL_Log("Could not create a surface: %s", SDL_GetError());
+	// 	return -1;	
+	// }
 
 	// hero = IMG_Load("./data/heros.png");
 	// if(hero == nullptr)
