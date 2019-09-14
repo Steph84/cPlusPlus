@@ -10,47 +10,20 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
+	// Initialization of the program : SDL, window and renderer
 	Initialize* initialization = new Initialize();
 	int initIndex = 0;
 	initIndex = initialization -> InitializeSDL();
-	if (initIndex < 0)
-	{
-		return -1;
-	}
-
+	if (initIndex < 0) { return -1; }
 	initIndex = initialization -> CreateWindow();
-	if (initIndex < 0)
-	{
-		return -1;
-	}
+	if (initIndex < 0) { return -1; }
+	initIndex = initialization -> CreateRenderer();
+	if (initIndex < 0) { return -1; }
 
-	// create renderer (use VRAM)
-	SDL_Renderer* renderer = SDL_CreateRenderer(initialization -> window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-	if(renderer == nullptr)
-	{
-		SDL_Log("Could not create a renderer: %s", SDL_GetError());
-		return -1;	
-	}
 
+	// creation of the game
 	GameRun* gameRun = new GameRun();
 
-
-
-
-	// create surface
-	// SDL_Surface* surface = IMG_Load("./data/background.png");
-	// if(surface == nullptr)
-	// {
-	// 	SDL_Log("Could not create a surface: %s", SDL_GetError());
-	// 	return -1;	
-	// }
-
-	// hero = IMG_Load("./data/heros.png");
-	// if(hero == nullptr)
-	// {
-	// 	SDL_Log("Could not create a hero: %s", SDL_GetError());
-	// 	return -1;	
-	// }
 
 	SDL_Texture* texture = nullptr;
 	SDL_Texture* textureHero = nullptr;
@@ -70,13 +43,13 @@ int main(int argc, char *argv[])
 
 
 	// create texture
-	texture = SDL_CreateTextureFromSurface(renderer, gameRun -> background);
+	texture = SDL_CreateTextureFromSurface(initialization -> renderer, gameRun -> background);
 	if(texture == nullptr)
 	{
 		SDL_Log("Could not create a texture: %s", SDL_GetError());
 		return -1;	
 	}
-	textureHero = SDL_CreateTextureFromSurface(renderer, gameRun -> hero);
+	textureHero = SDL_CreateTextureFromSurface(initialization -> renderer, gameRun -> hero);
 	if(textureHero == nullptr)
 	{
 		SDL_Log("Could not create a textureHero: %s", SDL_GetError());
@@ -101,13 +74,13 @@ int main(int argc, char *argv[])
 			}
 		}
 
-		SDL_RenderClear(renderer);
+		SDL_RenderClear(initialization -> renderer);
 
 		// draw the texture on the renderer
-		SDL_RenderCopy(renderer, texture, NULL, NULL);
-		SDL_RenderCopy(renderer, textureHero, &srcrect, &dstrect);
+		SDL_RenderCopy(initialization -> renderer, texture, NULL, NULL);
+		SDL_RenderCopy(initialization -> renderer, textureHero, &srcrect, &dstrect);
 
-		SDL_RenderPresent(renderer);
+		SDL_RenderPresent(initialization -> renderer);
 		// break;
 	}
 
@@ -118,7 +91,7 @@ int main(int argc, char *argv[])
 	SDL_DestroyTexture(textureHero);
 
 	// destroy all the textures in the renderer then the renderer itself
-	SDL_DestroyRenderer(renderer);
+	SDL_DestroyRenderer(initialization -> renderer);
 	SDL_DestroyWindow(initialization -> window);
 
 	IMG_Quit();

@@ -31,3 +31,17 @@ int Initialize::CreateWindow()
 		return 0;
 	}
 }
+
+int Initialize::CreateRenderer()
+{
+	renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if(renderer == nullptr)
+	{
+		SDL_Log("Could not create a renderer: %s", SDL_GetError());
+		return -1;	
+	}
+	else
+	{
+		return 0;
+	}
+}

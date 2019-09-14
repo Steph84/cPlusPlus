@@ -10,8 +10,9 @@ public:
 
 	int InitializeSDL();
 	int CreateWindow();
-	// int CreateRenderer();
+	int CreateRenderer();
 
 	SDL_Window* window;
+	SDL_Renderer* renderer;
 };
 #endif
