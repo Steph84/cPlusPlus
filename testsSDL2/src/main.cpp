@@ -8,9 +8,6 @@
 // Initialize/LoadContent/UnloadContent/Update/Draw
 using namespace std;
 
-const int WINDOW_WIDTH = 1200;
-const int WINDOW_HEIGHT = 200;
-
 int main(int argc, char *argv[])
 {
 	Initialize* initialization = new Initialize();
@@ -21,17 +18,14 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	// create window
-	SDL_Window* window = SDL_CreateWindow("SDL2 tests", SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,
-								WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
-	if (window == nullptr)	
+	initIndex = initialization -> CreateWindow();
+	if (initIndex < 0)
 	{
-		SDL_Log("Could not create a window: %s", SDL_GetError());
 		return -1;
 	}
 
 	// create renderer (use VRAM)
-	SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	SDL_Renderer* renderer = SDL_CreateRenderer(initialization -> window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	if(renderer == nullptr)
 	{
 		SDL_Log("Could not create a renderer: %s", SDL_GetError());
@@ -125,7 +119,7 @@ int main(int argc, char *argv[])
 
 	// destroy all the textures in the renderer then the renderer itself
 	SDL_DestroyRenderer(renderer);
-	SDL_DestroyWindow(window);
+	SDL_DestroyWindow(initialization -> window);
 
 	IMG_Quit();
 	SDL_Quit();

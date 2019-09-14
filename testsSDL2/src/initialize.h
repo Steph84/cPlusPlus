@@ -9,7 +9,9 @@ class Initialize
 public:
 
 	int InitializeSDL();
-	// int CreateWindow();
+	int CreateWindow();
 	// int CreateRenderer();
+
+	SDL_Window* window;
 };
 #endif
