@@ -1,9 +1,7 @@
 #include <stdio.h>
 #include <iostream>
-#include <typeinfo>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
 #include "gameRun.h"
+#include "initialize.h"
 #include <tuple>
 #include <vector>
 
@@ -15,38 +13,11 @@ const int WINDOW_HEIGHT = 200;
 
 int main(int argc, char *argv[])
 {
-	// start = chrono::high_resolution_clock::now();
-	// vector<int> vectorSurface;
-	// for (int i = 0; i < 1000000; ++i)
-	// {
-	// 	vectorSurface.push_back(i*i);
-	// }
-	// end = chrono::high_resolution_clock::now();
-	// elapsed = chrono::duration<double, milli>(end-start).count();
- //  	printf ("creation vector = %.f\n", elapsed);
-
-	// start = chrono::high_resolution_clock::now();
-	// for (int i = 0; i < vectorSurface.size(); ++i)
-	// {
-	// 	int b = vectorSurface.at(i);
-	// }
-	// end = chrono::high_resolution_clock::now();
-	// elapsed = chrono::duration<double, milli>(end-start).count();
- //  	printf ("read vector = %.f\n", elapsed);
-
-	// start = chrono::high_resolution_clock::now();
-	// int d = vectorSurface.at(500000);
-	// printf("%d\n", d);
-	// end = chrono::high_resolution_clock::now();
-	// elapsed = chrono::duration<double, milli>(end-start).count();
- //  	printf ("read vector = %.f\n", elapsed);
-
-
-	// initialize SDL
-	if(SDL_Init(SDL_INIT_VIDEO) < 0)
+	Initialize* initialization = new Initialize();
+	int initIndex = 0;
+	initIndex = initialization -> InitializeSDL();
+	if (initIndex < 0)
 	{
-		printf("Failed to initialize SDL\n");
-		SDL_Log("Could not initialize SDL: %s", SDL_GetError());
 		return -1;
 	}
 
