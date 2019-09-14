@@ -7,6 +7,10 @@
 class Initialize
 {
 private:
+	int InitializeSDL();
+	int CreateWindow();
+	int CreateRenderer();
+	
 	const Uint32 initSDLFlags = SDL_INIT_VIDEO;
 	const char* windowTitle = "SDL2 tests";
 	const int windowWidth = 1200;
@@ -17,10 +21,9 @@ private:
 	const Uint32 rendererFlags = SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC;
 
 public:
-	int InitializeSDL();
-	int CreateWindow();
-	int CreateRenderer();
+	Initialize();
 
+	int initIndex;
 	SDL_Window* window;
 	SDL_Renderer* renderer;
 };

@@ -12,13 +12,7 @@ int main(int argc, char *argv[])
 {
 	// Initialization of the program : SDL, window and renderer
 	Initialize* initialization = new Initialize();
-	int initIndex = 0;
-	initIndex = initialization -> InitializeSDL();
-	if (initIndex < 0) { return -1; }
-	initIndex = initialization -> CreateWindow();
-	if (initIndex < 0) { return -1; }
-	initIndex = initialization -> CreateRenderer();
-	if (initIndex < 0) { return -1; }
+	if (initialization -> initIndex < 0) { return -1; }
 
 
 	// creation of the game

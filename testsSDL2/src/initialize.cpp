@@ -1,5 +1,19 @@
 #include "initialize.h"
 
+Initialize::Initialize()
+{
+	initIndex = 0;
+	initIndex = InitializeSDL();
+	if (initIndex == 0)
+	{
+		initIndex = CreateWindow();
+		if (initIndex == 0)
+		{
+			initIndex = CreateRenderer();
+		}
+	}
+}
+
 int Initialize::InitializeSDL()
 {
 	if(SDL_Init(initSDLFlags) < 0)
