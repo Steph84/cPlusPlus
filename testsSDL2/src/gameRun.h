@@ -2,16 +2,15 @@
 #define GAMERUN
 
 #include <SDL2/SDL.h>
-#include <SDL2/SDL_image.h>
+#include "spriteObject.h"
 
-class GameRun
+class GameRun : public SpriteObject
 {
 public:
 	
 	GameRun();
-	SDL_Surface* LoadSurface(const char* &fileName);
 	
-	SDL_Surface* background;
-	SDL_Surface* hero;
+	SpriteObject* background;
+	SpriteObject* hero;
 };
 #endif

@@ -18,32 +18,33 @@ int main(int argc, char *argv[])
 	// creation of the game
 	GameRun* gameRun = new GameRun();
 
+// TODO debug with what the type are...
 
 	SDL_Texture* texture = nullptr;
 	SDL_Texture* textureHero = nullptr;
 
 	// rectangles of source and destination
-	SDL_Rect srcrect;
-	srcrect.x = 0;
-	srcrect.y = 0;
-	srcrect.w = gameRun -> hero -> w;
-	srcrect.h = gameRun -> hero -> h;
+	// SDL_Rect srcrect;
+	// srcrect.x = 0;
+	// srcrect.y = 0;
+	// srcrect.w = gameRun -> hero -> w;
+	// srcrect.h = gameRun -> hero -> h;
 	
-	SDL_Rect dstrect;
-	dstrect.x = 10;
-	dstrect.y = 10;
-	dstrect.w = gameRun -> hero -> w * 2;
-	dstrect.h = gameRun -> hero -> h * 2;
+	// SDL_Rect dstrect;
+	// dstrect.x = 10;
+	// dstrect.y = 10;
+	// dstrect.w = gameRun -> hero -> w * 2;
+	// dstrect.h = gameRun -> hero -> h * 2;
 
 
 	// create texture
-	texture = SDL_CreateTextureFromSurface(initialization -> renderer, gameRun -> background);
+	texture = SDL_CreateTextureFromSurface(initialization -> renderer, gameRun -> background -> surface);
 	if(texture == nullptr)
 	{
 		SDL_Log("Could not create a texture: %s", SDL_GetError());
 		return -1;	
 	}
-	textureHero = SDL_CreateTextureFromSurface(initialization -> renderer, gameRun -> hero);
+	textureHero = SDL_CreateTextureFromSurface(initialization -> renderer, gameRun -> hero -> surface);
 	if(textureHero == nullptr)
 	{
 		SDL_Log("Could not create a textureHero: %s", SDL_GetError());
@@ -51,8 +52,8 @@ int main(int argc, char *argv[])
 	}
 
 	// free surface because don't need anymore
-	SDL_FreeSurface(gameRun -> background);
-	SDL_FreeSurface(gameRun -> hero);
+	SDL_FreeSurface(gameRun -> background -> surface);
+	SDL_FreeSurface(gameRun -> hero -> surface);
 
 
 	// game loop
@@ -72,7 +73,8 @@ int main(int argc, char *argv[])
 
 		// draw the texture on the renderer
 		SDL_RenderCopy(initialization -> renderer, texture, NULL, NULL);
-		SDL_RenderCopy(initialization -> renderer, textureHero, &srcrect, &dstrect);
+		SDL_RenderCopy(initialization -> renderer, textureHero,
+			&gameRun -> hero -> srcRect, &gameRun -> hero -> destRect);
 
 		SDL_RenderPresent(initialization -> renderer);
 		// break;

@@ -1,1 +1,1 @@
-g++ src/main.cpp src/gameRun.cpp src/initialize.cpp -Iinclude -Llib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -o myProg
+g++ src/main.cpp src/gameRun.cpp src/initialize.cpp src/spriteObject.cpp -Iinclude -Llib -lmingw32 -lSDL2main -lSDL2 -lSDL2_image -o myProg
